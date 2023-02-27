@@ -1,0 +1,13 @@
+<div class="wrapper-node">
+  <div class="node-template">
+    <div class="node-template-body">
+      <div  class="hover-text" (click)="alguito(dataIn?.data?.link)" *ngIf="dataIn?.data?.img"  >
+        <span class="tooltip-text" id="top">{{ dataIn?.data?.msg}}
+        </span>
+        <img  class="text-center" [src]="dataIn?.data?.img" width="180px" height="180px" alt="" />
+      </div>
+      <div [innerHTML]="dataIn?.data?.text">
+      </div>
+    </div>
+  </div>
+</div>
