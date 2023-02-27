@@ -49,9 +49,9 @@ export class FlowCharServicesService {
                 'color=' +
                 this.color +
                 '>' +
-                'LOAD BALANCER 50%</font>',
+                'LOADBALANCER</font>',
               link: 'https://swimlane.github.io/ngx-graph/#outputs',
-              msg: 'mesaje sin definir load balancer',
+              msg: 'mesaje sin definir',
             },
           },
           {
@@ -61,7 +61,7 @@ export class FlowCharServicesService {
               title: 'APIS',
               img: 'https://www.svgrepo.com/show/100036/server.svg',
               text: '<font ' + 'color=' + this.color + '>' + 'APIS </font>',
-              msg: 'mesaje sin definir apis',
+              msg: 'mesaje sin definir',
             },
           },
           {
@@ -71,7 +71,7 @@ export class FlowCharServicesService {
               title: 'MICROSERVICES',
               img: 'https://www.svgrepo.com/show/100036/server.svg',
               text: '<font ' + 'color=' + this.color + '>' + 'SERVICIOS</font>',
-              msg: 'mesaje sin definir services',
+              msg: 'mesaje sin definir',
             },
           },
           {
@@ -86,7 +86,7 @@ export class FlowCharServicesService {
                 this.color +
                 '>' +
                 'BASES DE DATOS </font>',
-              msg: 'mesaje sin definir bases de datos',
+              msg: 'mesaje sin definir',
             },
           },
           {

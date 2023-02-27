@@ -8,7 +8,6 @@ import { FlowChartNodeComponent } from './flow-chart-node/flow-chart-node.compon
 import { LoginComponent } from './login/login.component';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MermaidFlowChartComponent } from './mermaid-flow-chart/mermaid-flow-chart.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -18,14 +17,14 @@ import { HttpClientModule } from '@angular/common/http';
     ZoneChartComponent,
     FlowChartNodeComponent,
     LoginComponent,
-    MermaidFlowChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxGraphModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+
 
   ],
   providers: [],
