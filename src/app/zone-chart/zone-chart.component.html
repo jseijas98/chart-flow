@@ -1,11 +1,22 @@
-
-
-
 <div class="app-body">
-    <button class="algo" (click)="algo()">haz click aqui</button>
 
-    <div #zoneFlowChart class="flow-chart-wrapper">
-      <app-flow-chart></app-flow-chart>
+
+  <!-- <app-flow-chart></app-flow-chart>  -->
+
+  <div>
+    <div class="text-center">
+      <span> salud: {{ myData?.health }} | fecha: {{ myData?.date}}</span>
     </div>
+
+    <img
+      [ngStyle]="{ filter: colorSChema(myData?.health) }"
+      class="img2"
+      src="../../assets/server-svgrepo-com (7).svg"
+      width="180px"
+      height="180px"
+      alt="nose"
+    />
+
   </div>
 
+</div>

@@ -1,0 +1,305 @@
+<mat-dialog-content class="mat-typography">
+  <h4>Qué elemneto quieres añadir?</h4>
+  <mat-form-field appearance="outline">
+    <mat-label>elemento to add</mat-label>
+    <mat-select
+      [(ngModel)]="selectedValue"
+      name="newElement"
+      (ngModelChange)="Onselect(selectedValue)"
+    >
+      <mat-option *ngFor="let newadd of newElement" [value]="newadd.value">
+        {{ newadd.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- <p>Selected element: {{ selectedValue }}</p> -->
+  <br />
+  <!-- case 1 formulario para agregar nuevo servicio de pic -->
+  <div class="container" [ngSwitch]="selectedValue">
+    <form
+      *ngSwitchCase="'integration'"
+      [formGroup]="pic"
+      novalidate
+      (ngSubmit)="
+        onSubmit_pic(
+          testInterval.value,
+          url.value,
+          json.value,
+          channel.value,
+          description.value
+        )
+      "
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>intervalo entre test</mat-label>
+        <input
+          #testInterval
+          matInput
+          type="text"
+          formControlName="testInterval"
+        />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>url del servico pic</mat-label>
+        <input #url matInput formControlName="url" />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>json de entrda</mat-label>
+        <input #json matInput formControlName="json" />
+        <textarea matInput></textarea>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Canal del servicio pic</mat-label>
+        <input #channel matInput formControlName="channel" />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>descripción del servicio pic (opcional) </mat-label>
+        <input matInput #description formControlName="description" />
+      </mat-form-field>
+      <mat-dialog-actions align="center">
+        <button
+          mat-button
+          mat-dialog-close
+          type="submit"
+          [disabled]="pic.invalid"
+        >
+          agregar
+        </button>
+        <button mat-button mat-dialog-close>cancel</button>
+      </mat-dialog-actions>
+    </form>
+    <!-- case 2 formulario para agregar nueva base de datos -->
+    <div class="container" [ngSwitch]="selectedValue">
+      <form
+        *ngSwitchCase="'persistence'"
+        [formGroup]="dataBase"
+        novalidate
+        (ngSubmit)="
+          onSubmit_DB(
+            name.value,
+            sqlSentence.value,
+            username.value,
+            password.value,
+            testInterval.value,
+            url.value,
+            dataBaseType.value,
+            description.value
+          )
+        "
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>nombre de la base de datos</mat-label>
+          <input #name matInput type="text" formControlName="name" />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>sentencia sql</mat-label>
+          <input
+            #sqlSentence
+            matInput
+            type="text"
+            formControlName="sqlSentence"
+          />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>usuario de la base de datos</mat-label>
+          <input #username matInput type="text" formControlName="username" />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>contraseña de la base de datos</mat-label>
+          <input
+            matInput
+            #password
+            formControlName="password"
+            [type]="hide ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field appearance="outline">
+          <mat-label>intervalo entre test</mat-label>
+          <input
+            #testInterval
+            matInput
+            type="text"
+            formControlName="testInterval"
+          />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>url de la base de datos</mat-label>
+          <input #url matInput formControlName="url" />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>tipo de base de datos</mat-label>
+          <input #dataBaseType matInput formControlName="dataBaseType" />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>decripcion de la base de dato</mat-label>
+          <input #description matInput formControlName="description" />
+        </mat-form-field>
+        <mat-dialog-actions align="center">
+          <button
+            mat-button
+            mat-dialog-close
+            type="submit"
+            [disabled]="dataBase.invalid"
+          >
+            agregar
+          </button>
+          <button mat-button mat-dialog-close>cancel</button>
+        </mat-dialog-actions>
+      </form>
+      <!-- case 3 formulario para agregar un nuevo servicio -->
+      <div class="container" [ngSwitch]="selectedValue">
+        <form
+          *ngSwitchCase="'service'"
+          [formGroup]="service"
+          novalidate
+          (ngSubmit)="onSubmit_service(testInterval.value,name.value,labelApp.value,namespace.value,url.value,description.value)"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>intervalo entre test</mat-label>
+            <input #testInterval matInput type="text" formControlName="testInterval" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>nombre del servicio</mat-label>
+            <input #name matInput formControlName="name" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>label App del servicio</mat-label>
+            <input #labelApp matInput formControlName="labelApp" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>namespace que aloja el servicio</mat-label>
+            <input #namespace matInput formControlName="namespace" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>url del servico</mat-label>
+            <input #url matInput formControlName="url" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>descripción del servicio (opcional) </mat-label>
+            <input #description matInput formControlName="description" />
+          </mat-form-field>
+          <mat-dialog-actions align="center">
+            <button
+              mat-button
+              mat-dialog-close
+              type="submit"
+              [disabled]="service.invalid"
+            >
+              agregar
+            </button>
+            <button mat-button mat-dialog-close>cancel</button>
+          </mat-dialog-actions>
+        </form>
+        <!-- case 4 formulario para agregar un nuevo api -->
+        <form
+          *ngSwitchCase="'apis'"
+          [formGroup]="apis"
+          novalidate
+          (ngSubmit)="onSubmit_apis(labelApp.value,namespace.value,testInterval.value,url.value)"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>label App del API</mat-label>
+            <input #labelApp matInput formControlName="labelApp" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>namespace que aloja el API</mat-label>
+            <input #namespace matInput formControlName="namespace" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>intervalo entre test</mat-label>
+            <input #testInterval matInput type="text" formControlName="testInterval" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>url del API</mat-label>
+            <input #url matInput formControlName="url" />
+          </mat-form-field>
+          <br />
+          <mat-dialog-actions align="center">
+            <button
+              mat-button
+              mat-dialog-close
+              type="submit"
+              [disabled]="apis.invalid"
+            >
+              agregar
+            </button>
+            <button mat-button mat-dialog-close>cancel</button>
+          </mat-dialog-actions>
+        </form>
+        <!-- case 5 formulario para agregar un nuevo balanceador de carga -->
+        <form
+          *ngSwitchCase="'loadbalancer'"
+          [formGroup]="loadBalancer"
+          novalidate
+          (ngSubmit)="onSubmit_laodBalancer(testInterval.value,url.value,json.value,description.value)"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>intervalo entre test</mat-label>
+            <input #testInterval matInput type="text" formControlName="testInterval" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>url del balanceador de carga</mat-label>
+            <input #url matInput formControlName="url" />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>json de entrda</mat-label>
+            <input #json matInput formControlName="json" />
+            <textarea matInput></textarea>
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>descripción (opcional) </mat-label>
+            <input #description matInput formControlName="description" />
+          </mat-form-field>
+          <mat-dialog-actions align="center">
+            <button
+              mat-button
+              mat-dialog-close
+              type="submit"
+              [disabled]="loadBalancer.invalid"
+            >
+              agregar
+            </button>
+            <button mat-button mat-dialog-close>cancel</button>
+          </mat-dialog-actions>
+        </form>
+        <div *ngIf="buttontoggle(selectedValue)">
+          <mat-dialog-actions align="center">
+            <button mat-button mat-dialog-close>Cancel</button>
+          </mat-dialog-actions>
+        </div>
+      </div>
+    </div>
+  </div></mat-dialog-content
+>

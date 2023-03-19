@@ -9,6 +9,13 @@ import { LoginComponent } from './login/login.component';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ModalComponent } from './modal/modal.component';
+import { FormularioComponent } from './formulario/formulario.component';
+import { MaterialModule } from './material.module';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
@@ -17,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     ZoneChartComponent,
     FlowChartNodeComponent,
     LoginComponent,
+    ModalComponent,
+    FormularioComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,10 +33,15 @@ import { HttpClientModule } from '@angular/common/http';
     NgxGraphModule,
     BrowserAnimationsModule,
     HttpClientModule,
-
+    NgxChartsModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

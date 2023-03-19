@@ -10,19 +10,14 @@ import { FlowCharServicesService } from '../services/flow-char-service/flow-char
 export class FlowChartNodeComponent implements OnInit {
   @Input() dataIn: any;
 
-  constructor(private serv: FlowCharServicesService, private router:Router) {}
+  constructor(private serv: FlowCharServicesService, private router: Router) {}
 
   ngOnInit(): void {}
 
-  callGraph(): void {
-    this.serv.setData('application');
-  }
 
-  alguito(algo:any){
-    this.router.navigateByUrl(algo)
+
+  alguito(algo: any) {
+    this.router.navigateByUrl(algo);
     console.log(algo);
-
   }
-
-
 }
